@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+    <style>
+        #mobile {
+            display: none;
+        }
+
+        #web iframe,
+        #mobile iframe {
+            width: 100%;
+            height: 100%; /* Set the height to 100% for responsiveness */
+        }
+        
+        @media (min-width: 768px) {
+          /* Set a fixed height for larger screens */
+          #web iframe {
+              height: 680px;
+          }
+      }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" title="Home" class="nav-link" style="text-decoration: none;">
+                        <i class="fas fa-home fa-lg" style="color: #CE1B5F;"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="webSize()"><i class="fas fa-desktop"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="mobileSize()"><i class="fas fa-mobile-alt"></i></a>
+                </li>
+            </ul>
+        </div>
+        <a class="btn btn-outline-success" href="payment">Purchase</a>
+    </div>
+</nav>
+
+<div id="web" class="container-fluid">
+    <iframe srcdoc="{{content}}" style="width:100%;height:680px;" id="encoder_frame"></iframe>
+</div>
+
+<div id="mobile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="margin-top:20px;">
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                    <div class="col-md-12">
+                        <iframe srcdoc="{{content}}" style="width:100%;height:80vh;" scrolling="auto;"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function webSize() {
+        document.getElementById("web").style.display = "block";
+        document.getElementById("mobile").style.display = "none";
+    }
+
+    function mobileSize() {
+        document.getElementById("web").style.display = "none";
+        document.getElementById("mobile").style.display = "block";
+    }
+
+    // Detect the screen width and set default view
+    window.onload = function () {
+        if (window.innerWidth <= 768) {
+            mobileSize();
+        } else {
+            webSize();
+        }
+    };
+
+    // Handle window resize
+    window.onresize = function () {
+        if (window.innerWidth <= 768) {
+            mobileSize();
+        } else {
+            webSize();
+        }
+    };
+</script>
+</body>
+</html>
